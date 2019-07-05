@@ -1,0 +1,31 @@
+{
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc", "closure"]
+    },
+    "source": {
+        "include": ["index.js", "src"],
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "plugins": [
+        "plugins/markdown",
+        "plugins/summarize"
+    ],
+    "templates": {
+        "cleverLinks": true,
+        "monospaceLinks": true,
+        "referenceTitle": "Test BASE",
+        "disableSort": false,
+        "collapse": true,
+        "resources": {
+            "google": "https://www.google.com/"
+        }
+    },
+    "opts": {
+        "destination": "docs",
+        "recurse": true,
+        "readme": "README.md",
+        "template": "templates/braintree-template"
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "name": "geowe-gis",
+    "version": "0.1.0",
+    "description": "Librería de componentes Open Source en Javascript para el desarrollo de aplicaciones GIS en la web.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "parcel -p 9000 index.html --no-cache",
+        "build": "parcel build --public-url . index.html NODE_ENV=production -no-cache",
+        "doc": "jsdoc -c jsdoc.conf.json"
+    },
+    "keywords": [
+        "GIS",
+        "SIG",
+        "map",
+        "openlayers",
+        "geowe"
+    ],
+    "author": {
+        "name": "José María",
+        "email": "jose@geowe.org"
+    },
+    "contributors": [{
+            "name": "Atanasio Muñoz",
+            "email": "ata@geowe.org"
+        },
+        {
+            "name": "Rafael López",
+            "email": "rafa@geowe.org"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/geowe2-ce/geowe-gis.git"
+    },
+    "bugs": {
+        "url": "https://github.com/geowe2-ce/geowe-gis/issues"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "jsdoc": "^3.6.2",
+        "parcel-bundler": "^1.12.3"
+    },
+    "dependencies": {
+        "epsg-index": "^0.22.0",
+        "file-saver": "2.0.0-rc.4",
+        "geowe-ui-js": "^0.1.1",
+        "jsts": "^1.6.0",
+        "ol": "^5.3.3",
+        "proj4": "^2.5.0",
+        "shpjs": "^3.4.2"
+    }
+}
