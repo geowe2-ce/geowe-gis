@@ -4,10 +4,12 @@ import { ToggleButton } from 'geowe-ui-js/api/button/ToggleButton';
 import { MapRenderer } from './api/map/MapRenderer';
 import { catastroLayer, osmLayer } from './api/layer/tile/catalog/TileLayerCatalog';
 import 'geowe-ui-js/style/main.css';
+import { ZoomToExtentTool } from './api/tool/zoom/ZoomToExtentTool';
 
 const toolbar = new ToolBar("toolbarId");
 
-const zoomExtentButton = new SimpleButton("zoomExtentId", "", 'fas fa-globe-americas', execute);
+// const zoomExtentButton = new SimpleButton("zoomExtentId", "", 'fas fa-globe-americas', execute);
+const zoomToExtentTool = new ZoomToExtentTool();
 const selectToggletButton = new ToggleButton("selectId", "", 'fas fa-mouse-pointer', execute);
 const panToggleButton = new ToggleButton("panId", "", "far fa-hand-paper", execute);
 const measureLineToggleButton = new ToggleButton("measureLineId", "", "fas fa-ruler", execute);
@@ -15,9 +17,10 @@ const measurePolygonToggleButton = new ToggleButton("measurePolygonId", "", "fas
 
 toolbar.addTool(panToggleButton, "tools", true);
 toolbar.addTool(selectToggletButton, "tools");
-toolbar.addTool(zoomExtentButton);
+// toolbar.addTool(zoomExtentButton);
 toolbar.addTool(measureLineToggleButton, "tools");
 toolbar.addTool(measurePolygonToggleButton, "tools");
+toolbar.addTool(zoomToExtentTool);
 
 var mapOptions = {
     projection: '25830',
@@ -26,11 +29,11 @@ var mapOptions = {
 };
 var mapRenderer = new MapRenderer(mapOptions);
 
-const rasterCatalog = [catastroLayer];
+const rasterCatalog = [osmLayer, catastroLayer];
 
-
-mapRenderer.render({ id: 'map', defaultTileLayers: rasterCatalog });
 toolbar.show();
+mapRenderer.render({ id: 'map', defaultTileLayers: rasterCatalog });
+
 
 function execute() {
     alert("executed!!");

@@ -38,6 +38,8 @@
     },
     "license": "MIT",
     "devDependencies": {
+        "@babel/core": "^7.5.0",
+        "babel-preset-env": "^1.7.0",
         "jsdoc": "^3.6.2",
         "parcel-bundler": "^1.12.3"
     },
@@ -49,5 +51,18 @@
         "ol": "^5.3.3",
         "proj4": "^2.5.0",
         "shpjs": "^3.4.2"
+    },
+    "babel": {
+        "presets": [
+            [
+                "@babel/preset-env",
+                {
+                    "targets": {
+                        "node": "current",
+                        "modules": "es6"
+                    }
+                }
+            ]
+        ]
     }
 }
