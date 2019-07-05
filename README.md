@@ -3,7 +3,7 @@ Librería de componentes Open Source en Javascript para el desarrollo de aplicac
 
 ## Requerimientos
 
-Para comenzar a trabajar con el proyecto necesitará tener Node.js instalado en su entorno. Para **geowe-ui** se han utilizado las siguientes versiones: 
+Para comenzar a trabajar con el proyecto necesitará tener Node.js instalado en su entorno. Para **geowe-gis** se han utilizado las siguientes versiones: 
 
     $ node --version
     v10.15.3
@@ -20,8 +20,8 @@ Para usar la librería desde un proyecto Javascript basado en NodeJS, ejecute el
 ## Ejemplo básico de uso
 
 ```javascript
-import { MapRenderer } from './api/map/MapRenderer';
-import { catastroLayer, osmLayer } from './api/layer/tile/catalog/TileLayerCatalog';
+import { MapRenderer } from 'geowe-gis/api/map/MapRenderer';
+import { catastroLayer, osmLayer } from 'geowe-gis/api/layer/tile/catalog/TileLayerCatalog';
 
 const mapOptions = {
     projection: '25830',
