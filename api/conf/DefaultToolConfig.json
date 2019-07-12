@@ -1,0 +1,63 @@
+{
+    "es": {
+        "tool": {
+            "panTool": {
+                "label": "",
+                "iconFont": "far fa-hand-paper",
+                "cursor": "grab"
+            },
+            "zoomInTool": {
+                "label": "",
+                "iconFont": "fas fa-search-plus"
+            },
+            "zoomOutTool": {
+                "label": "",
+                "iconFont": "fas fa-search-minus"
+            },
+            "zoomBoxTool": {
+                "label": "",
+                "iconFont": "ms ms-zoom-box",
+                "cursor": "zoom-in"
+            },
+            "zoomToExtentTool": {
+                "label": "",
+                "iconFont": "fas fa-globe-americas"
+            },
+            "measureTool": {
+                "label": "",
+                "iconFont": "fas fa-ruler"
+            }
+        }
+    },
+
+    "en": {
+        "tool": {
+            "panTool": {
+                "label": "",
+                "iconFont": "far fa-hand-paper",
+                "cursor": "grab"
+            },
+            "zoomInTool": {
+                "label": "",
+                "iconFont": "fas fa-search-plus"
+            },
+            "zoomOutTool": {
+                "label": "",
+                "iconFont": "fas fa-search-minus"
+            },
+            "zoomBoxTool": {
+                "label": "",
+                "iconFont": "ms ms-zoom-box",
+                "cursor": "zoom-in"
+            },
+            "zoomToExtentTool": {
+                "label": "",
+                "iconFont": "fas fa-globe-americas"
+            },
+            "measureTool": {
+                "label": "",
+                "iconFont": "fas fa-ruler"
+            }
+        }
+    }
+}

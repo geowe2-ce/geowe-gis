@@ -1,11 +1,11 @@
-import { Tool } from "../base/Tool";
+import { ZoomTool } from '../../tool/base/ZoomTool';
 
-export class ZoomToExtentTool extends Tool {
+export class ZoomToExtentTool extends ZoomTool {
     constructor(map) {
-        super({ id: "zoomToExtentTool", iconFont: "fas fa-globe-americas", map: map });
+        super({ id: "zoomToExtentTool", map: map });
     }
 
     onToolClicked() {
-        alert("Canela");
+        this.getControl().zoomToExtent();
     }
 }

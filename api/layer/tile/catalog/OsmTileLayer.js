@@ -1,4 +1,3 @@
-import { AbstractTileLayer } from '../AbstractTileLayer';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 
@@ -7,9 +6,9 @@ import OSM from 'ol/source/OSM';
  * 
  */
 
-export class OsmTileLayer extends AbstractTileLayer {
+export class OsmTileLayer {
     constructor() {
-        super();
+
     }
 
     getTileLayer() {

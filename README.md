@@ -21,19 +21,71 @@ Para usar la librería desde un proyecto Javascript basado en NodeJS, ejecute el
 
 ```javascript
 import { MapRenderer } from 'geowe-gis/api/map/MapRenderer';
-import { catastroLayer, osmLayer } from 'geowe-gis/api/layer/tile/catalog/TileLayerCatalog';
+import 'geowe-gis/style/main.css';
 
-const mapOptions = {
-    projection: '25830',
-    extent: [97805.10450538254, 3975325.5395915597, 624149.7135073378, 4290248.833085548],
-    centerPoint: [624149.7135073378, 4290248.833085548]
-};
+const mapRenderer = new MapRenderer();
+mapRenderer.render();
+```
 
-const mapRenderer = new MapRenderer(mapOptions);
-const rasterCatalog = [osmLayer, catastroLayer];
+## Ejemplo personalizado
 
-//Se le especifica que renderize el mapa en el elemento del DOM con identificador llamado "map" 
-mapRenderer.render({ id: 'map', defaultTileLayers: rasterCatalog });
+En este ejemplo se personaliza la configuración del mapa mediante un fichero externo. 
+
+```javascript
+import { MapRenderer } from 'geowe-gis/api/map/MapRenderer';
+import settingsHolder from 'geowe-gis/api/conf/SettingsHolder';
+import 'geowe-gis/style/main.css';
+
+//Carga de la configuración del mapa vía URL
+settingsHolder.loadURLSettings("https://raw.githubusercontent.com/jmmluna/geodata/master/appConfig.json", ()=>{
+    //Mapas raster base soportadas por el catálogo por defecto de geowe-gis
+    //"osm", "raster.carto-light", "raster.carto-dark", "raster.catastro", "raster.ign-base", "raster.ign-fondo", ""raster.ign-raster", "raster.pnoa-ortho", "raster.pnoa-mosaic"
+
+    const mapRenderer = new MapRenderer();
+    mapRenderer.render();
+});
+```
+
+El fichero de configuración contiene las siguientes propiedades:
+
+```json
+{
+    "map": {
+        "projection": "EPSG:25830",
+        "extent": [97805.10450538254, 3975325.5395915597, 624149.7135073378, 4290248.833085548],
+        "centerPoint": [624149.7135073378, 4290248.833085548],
+        "defaultTileLayers": ["raster.carto-dark", "vector.Medina-azahara"]
+    },
+    "raster": {
+        "wms1": {
+            "title": "PNOA Mosaico",
+            "type": "wms",
+            "attributions": "© <a target='_blank' href='http://www.scne.es'>Sistema Cartográfico Nacional</a>",
+            "url": "http://www.ign.es/wms-inspire/pnoa-ma",
+            "layers": "OI.MosaicElement"
+        },
+        "wmts1": {
+            "title": "Argentina WMTS Example",
+            "type": "wmts",
+            "attributions": "© <a target='_blank' href='http://www.scne.es'>Sistema Cartográfico Nacional</a>",
+            "url": "https://ide.ign.gob.ar/geoservicios/rest/services/sensores_remotos/mendoza/ImageServer/WMTS",
+            "layer": "sensores_remotos_mendoza",
+            "format": "image/jpgpng",
+            "style": "default",
+            "matrixSet": "default028mm"
+        }
+    },
+    "vector": {
+        "Medina-azahara": {
+            "name": "mi-capa",
+            "type": "vector",
+            "source": "url",
+            "uri": "https://raw.githubusercontent.com/jmmluna/geodata/master/medina_azahara/Mad%C3%ADnat%20al-Zahra.geojson",
+            "format": "geojson",
+            "srs": "EPSG:4326"
+        }
+    }
+}
 ```
 
 ## Contributors

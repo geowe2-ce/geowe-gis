@@ -1,0 +1,48 @@
+{
+    "map": {
+        "projection": "EPSG:25830",
+        "extent": [97805.10450538254, 3975325.5395915597, 624149.7135073378, 4290248.833085548],
+        "centerPoint": [624149.7135073378, 4290248.833085548],
+        "defaultTileLayers": ["osm", "vector.file.Medina-azahara"]
+    },
+    "raster": {
+        "wms1": {
+            "title": "PNOA Mosaico",
+            "type": "wms",
+            "attributions": "© <a target='_blank' href='http://www.scne.es'>Sistema Cartográfico Nacional</a>",
+            "url": "http://www.ign.es/wms-inspire/pnoa-ma",
+            "layers": "OI.MosaicElement"
+        },
+        "wmts1": {
+            "title": "Argentina WMTS Example",
+            "type": "wmts",
+            "attributions": "© <a target='_blank' href='http://www.scne.es'>Sistema Cartográfico Nacional</a>",
+            "url": "https://ide.ign.gob.ar/geoservicios/rest/services/sensores_remotos/mendoza/ImageServer/WMTS",
+            "layer": "sensores_remotos_mendoza",
+            "format": "image/jpgpng",
+            "style": "default",
+            "matrixSet": "default028mm"
+        }
+    },
+    "vector": {
+
+        "Medina-azahara": {
+            "name": "mi-capa",
+            "type": "vector",
+            "source": "url",
+            "uri": "https://raw.githubusercontent.com/jmmluna/geodata/master/medina_azahara/Mad%C3%ADnat%20al-Zahra.geojson",
+            "format": "geojson",
+            "srs": "EPSG:4326"
+        },
+        "wfs": {
+            "name": "mi-capa",
+            "type": "vector",
+            "source": "wfs",
+            "uri": "https://raw.githubusercontent.com/jmmluna/geodata/master/medina_azahara/Mad%C3%ADnat%20al-Zahra.geojson",
+            "format": "geojson",
+            "srs": "EPSG:4326"
+        }
+
+
+    }
+}

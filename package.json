@@ -20,7 +20,8 @@
         "name": "José María",
         "email": "jose@geowe.org"
     },
-    "contributors": [{
+    "contributors": [
+        {
             "name": "Atanasio Muñoz",
             "email": "ata@geowe.org"
         },
@@ -38,31 +39,18 @@
     },
     "license": "MIT",
     "devDependencies": {
-        "@babel/core": "^7.5.0",
-        "babel-preset-env": "^1.7.0",
+        "@babel/core": "^7.5.4",
         "jsdoc": "^3.6.2",
         "parcel-bundler": "^1.12.3"
     },
     "dependencies": {
         "epsg-index": "^0.22.0",
         "file-saver": "2.0.0-rc.4",
-        "geowe-ui-js": "^0.1.1",
+        "geowe-ui-js": "^0.1.2",
         "jsts": "^1.6.0",
+        "mapskin": "^1.0.0",
         "ol": "^5.3.3",
         "proj4": "^2.5.0",
         "shpjs": "^3.4.2"
-    },
-    "babel": {
-        "presets": [
-            [
-                "@babel/preset-env",
-                {
-                    "targets": {
-                        "node": "current",
-                        "modules": "es6"
-                    }
-                }
-            ]
-        ]
     }
 }

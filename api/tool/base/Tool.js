@@ -1,21 +1,27 @@
-import { SimpleButton } from "geowe-ui-js/api/button/SimpleButton";
+import { UIElement } from 'geowe-ui-js/api/base/UIElement';
+import settingsHolder from '../../conf/SettingsHolder';
 
-export class Tool extends SimpleButton {
-    constructor(options) {
-        super(options.id, options.label, options.iconFont, function() {});
+export class Tool extends UIElement {
+    constructor(uiElement, map) {
+        super(uiElement.getId(), "");
 
-        /*if (options.map == undefined)
-            throw new Exception("Can not create tool without map reference");
+        if (map == undefined)
+            throw "Can not create tool without map reference";
 
-        this.element.addEventListener("click", (e) => this.onToolClicked());
-        this.map = options.map;*/
+        this.map = map;
+        this.uiElement = uiElement;
+        this.element = uiElement.getDOMObject();
     }
 
-    /*onToolClicked() {
-        alert("To be implemented");
-    }*/
-}
+    getMap() {
+        return this.map;
+    }
 
-function pepe() {
+    getUIElement() {
+        return this.uiElement;
+    }
 
+    getSettingsHolder() {
+        return settingsHolder;
+    }
 }

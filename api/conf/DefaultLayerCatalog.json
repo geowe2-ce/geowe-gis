@@ -1,0 +1,67 @@
+{
+    "raster": {
+        "catastro": {
+            "title": "Catastro",
+            "type": "wms",
+            "attributions": "© <a target='_blank' href='https://www.sedecatastro.gob.es/'>DIRECCION GENERAL DEL CATASTRO</a>",
+            "url": "http://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx",
+            "layers": "catastro",
+            "srs": "EPSG:25830"
+        },
+        "ign-base": {
+            "title": "IGN Base",
+            "type": "wms",
+            "attributions": "© <a target='_blank' href='http://www.ign.es'>Instituto Geográfico Nacional</a>",
+            "url": "http://www.ign.es/wms-inspire/ign-base",
+            "layers": "IGNBaseTodo"
+        },
+        "ign-fondo": {
+            "title": "IGN Fondo",
+            "type": "wms",
+            "attributions": "© <a target='_blank' href='http://www.ign.es'>Instituto Geográfico Nacional</a>",
+            "url": "http://www.ign.es/wms-inspire/mapa-raster",
+            "layers": "fondo"
+        },
+        "ign-raster": {
+            "title": "IGN Raster",
+            "type": "wms",
+            "attributions": "© <a target='_blank' href='http://www.ign.es'>Instituto Geográfico Nacional</a>",
+            "url": "http://www.ign.es/wms-inspire/mapa-raster",
+            "layers": "mtn_rasterizado"
+        },
+        "pnoa-ortho": {
+            "title": "PNOA Orto",
+            "type": "wms",
+            "attributions": "© <a target='_blank' href='http://www.scne.es'>Sistema Cartográfico Nacional</a>",
+            "url": "http://www.ign.es/wms-inspire/pnoa-ma",
+            "layers": "OI.OrthoimageCoverage"
+        },
+        "pnoa-mosaic": {
+            "title": "PNOA Mosaico",
+            "type": "wms",
+            "attributions": "© <a target='_blank' href='http://www.scne.es'>Sistema Cartográfico Nacional</a>",
+            "url": "http://www.ign.es/wms-inspire/pnoa-ma",
+            "layers": "OI.MosaicElement"
+        },
+        "carto-light": {
+            "title": "Carto Light",
+            "type": "xyz",
+            "attributions": "© <a target='_blank' href='http://carto.com/attributions'>Carto</a> © <a  target='_blank' href='http://www.openstreetmap.org/copyright'>OpenStreetMap contributors</a>",
+            "url": "http://{1-4}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
+
+        },
+        "carto-dark": {
+            "title": "Carto Dark",
+            "type": "xyz",
+            "attributions": "© <a target='_blank' href='http://carto.com/attributions'>Carto</a> © <a  target='_blank' href='http://www.openstreetmap.org/copyright'>OpenStreetMap contributors</a>",
+            "url": "http://{1-4}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"
+        }
+    },
+    "vector": {
+        "wfs": {
+            "wfs-test": {
+                "title": "WFS de Prueba"
+            }
+        }
+    }
+}

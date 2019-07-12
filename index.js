@@ -1,39 +1,52 @@
 import { ToolBar } from 'geowe-ui-js/api/toolbar/ToolBar';;
-import { SimpleButton } from 'geowe-ui-js/api/button/SimpleButton';
 import { ToggleButton } from 'geowe-ui-js/api/button/ToggleButton';
 import { MapRenderer } from './api/map/MapRenderer';
-import { catastroLayer, osmLayer } from './api/layer/tile/catalog/TileLayerCatalog';
-import 'geowe-ui-js/style/main.css';
+import './style/main.css';
+
 import { ZoomToExtentTool } from './api/tool/zoom/ZoomToExtentTool';
+import { ZoomInTool } from './api/tool/zoom/ZoomInTool';
+import { ZoomOutTool } from './api/tool/zoom/ZoomOutTool';
+import { ZoomBoxTool } from './api/tool/zoom/ZoomBoxTool';
+import { PanTool } from './api/tool/main/PanTool';
+import { MeasureTool } from './api/tool/measure/MeasureTool';
 
-const toolbar = new ToolBar("toolbarId");
+import appConfig from './appConfig.json';
+import settingsHolder from './api/conf/SettingsHolder';
 
-// const zoomExtentButton = new SimpleButton("zoomExtentId", "", 'fas fa-globe-americas', execute);
-const zoomToExtentTool = new ZoomToExtentTool();
-const selectToggletButton = new ToggleButton("selectId", "", 'fas fa-mouse-pointer', execute);
-const panToggleButton = new ToggleButton("panId", "", "far fa-hand-paper", execute);
-const measureLineToggleButton = new ToggleButton("measureLineId", "", "fas fa-ruler", execute);
-const measurePolygonToggleButton = new ToggleButton("measurePolygonId", "", "fas fa-ruler-combined", execute);
+//settingsHolder.setLocale("en");
+//settingsHolder.loadURLSettings("https://raw.githubusercontent.com/jmmluna/geodata/master/appConfig.json", initialize);
 
-toolbar.addTool(panToggleButton, "tools", true);
-toolbar.addTool(selectToggletButton, "tools");
-// toolbar.addTool(zoomExtentButton);
-toolbar.addTool(measureLineToggleButton, "tools");
-toolbar.addTool(measurePolygonToggleButton, "tools");
-toolbar.addTool(zoomToExtentTool);
+initialize();
 
-var mapOptions = {
-    projection: '25830',
-    extent: [97805.10450538254, 3975325.5395915597, 624149.7135073378, 4290248.833085548],
-    centerPoint: [624149.7135073378, 4290248.833085548]
-};
-var mapRenderer = new MapRenderer(mapOptions);
+function initialize() {
+    const toolbar = new ToolBar("toolbarId");
+    const selectToggletButton = new ToggleButton("selectId", "", 'fas fa-mouse-pointer', execute);
+    //const panToggleButton = new ToggleButton("panId", "", "far fa-hand-paper", execute);
+    //const measureLineToggleButton = new ToggleButton("measureLineId", "", "fas fa-ruler", execute);
+    //const measurePolygonToggleButton = new ToggleButton("measurePolygonId", "", "fas fa-ruler-combined", execute);
 
-const rasterCatalog = [osmLayer, catastroLayer];
+    const mapRenderer = new MapRenderer();
 
-toolbar.show();
-mapRenderer.render({ id: 'map', defaultTileLayers: rasterCatalog });
+    toolbar.show();
+    mapRenderer.render();
 
+    const zoomToExtentTool = new ZoomToExtentTool(mapRenderer.getMap());
+    const zoomInTool = new ZoomInTool(mapRenderer.getMap());
+    const zoomOutTool = new ZoomOutTool(mapRenderer.getMap());
+    const zoomBoxTool = new ZoomBoxTool(mapRenderer.getMap());
+    const panTool = new PanTool(mapRenderer.getMap());
+    const measureTool = new MeasureTool(mapRenderer.getMap());
+
+    toolbar.addTool(panTool.getUIElement(), "tools", true);
+    toolbar.addTool(selectToggletButton, "tools");
+    //toolbar.addTool(measureLineToggleButton, "tools");
+    //toolbar.addTool(measurePolygonToggleButton, "tools");
+    toolbar.addTool(zoomToExtentTool);
+    toolbar.addTool(zoomInTool);
+    toolbar.addTool(zoomOutTool);
+    toolbar.addTool(zoomBoxTool.getUIElement(), "tools");
+    toolbar.addTool(measureTool.getUIElement(), "tools");
+}
 
 function execute() {
     alert("executed!!");

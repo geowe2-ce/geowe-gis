@@ -1,16 +1,9 @@
 import 'ol/ol.css';
 import { Map, View } from 'ol';
 import { defaults as defaultControls, ScaleLine } from 'ol/control';
-import { osmLayer } from '../layer/tile/catalog/TileLayerCatalog';
 import { Projections } from '../proj/Projections';
-
-const DEFAULT_PROJECTION = "3857";
-const DEFAULT_EXTENT = [-1102527.695985, 4273747.125481, 389523.096141, 5479006.187481];
-const DEFAULT_CENTER_POINT = [-412148.456514, 4926825.095149]
-const DEFAULT_INIT_ZOOM = 1;
-const DEFAULT_MIN_ZOOM = 5;
-const DEFAULT_UNIT = 'm';
-const DEFAULT_DOM_ID = 'map';
+import settingsHolder from '../conf/SettingsHolder';
+import layerFactory from '../layer/LayerFactory';
 
 /**
  * Representa al responsable de crear el mapa
@@ -20,24 +13,36 @@ const DEFAULT_DOM_ID = 'map';
  */
 
 export class MapRenderer {
-    constructor(options) {
-        this.projection = options.projection != undefined ? options.projection : DEFAULT_PROJECTION;
-        this.extent = options.extent != undefined ? options.extent : DEFAULT_EXTENT;
-        this.centerPoint = options.centerPoint != undefined ? options.centerPoint : DEFAULT_CENTER_POINT;
-        this.initialZoom = options.initialZoom != undefined ? options.initialZoom : DEFAULT_INIT_ZOOM;
-        this.minZoom = options.minZoom != undefined ? options.minZoom : DEFAULT_MIN_ZOOM;
+    constructor() {
+        const projectionCode = settingsHolder.getSetting("map.projection");
+        this.extent = settingsHolder.getSetting("map.extent");
+        this.centerPoint = settingsHolder.getSetting("map.centerPoint");
+        this.initialZoom = settingsHolder.getSetting("map.initZoom");
+        this.minZoom = settingsHolder.getSetting("map.minZoom");
+        this.unit = settingsHolder.getSetting("map.unit");
+
+        this.projection = Projections.get(projectionCode);
+        if (this.projection == undefined) {
+            alert("La proyección EPSG:" + projectionCode + " no es válida. Se establece la proyección EPSG:3857 por defecto.");
+            this.projection = Projections.get(3857);
+        }
+
+        if (this.extent == undefined || this.extent.length == 0) {
+            this.extent = this.projection.getExtent();
+        }
+
+        if (this.centerPoint == undefined || this.centerPoint.length == 0) {
+            this.centerPoint = [0, 0];
+        }
     }
 
     /**
      * Renderiza el mapa en el DOM
      */
-    render(options) {
-        this.id = options.id != undefined ? options.id : DEFAULT_DOM_ID;
-        if (options.defaultTileLayers == undefined || options.defaultTileLayers.length == 0) {
-            this.defaultTileLayers = [osmLayer];
-        } else
-            this.defaultTileLayers = options.defaultTileLayers;
-
+    render() {
+        this.id = settingsHolder.getSetting("map.domId");
+        const tileLayers = settingsHolder.getSetting("map.defaultTileLayers");
+        this.defaultTileLayers = layerFactory.getLayers(tileLayers);
         var scaleLineControl = new ScaleLine();
 
         this.map = new Map({
@@ -55,12 +60,12 @@ export class MapRenderer {
             loadTilesWhileAnimating: true,
             view: new View({
                 extent: this.extent,
-                projection: Projections.get(this.projection),
+                projection: this.projection,
                 center: this.centerPoint,
                 zoom: this.initialZoom,
                 minZoom: this.minZoom
             }),
-            units: DEFAULT_UNIT
+            units: this.unit
         });
 
         setTimeout(function() {

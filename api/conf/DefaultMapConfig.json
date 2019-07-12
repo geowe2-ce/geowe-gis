@@ -1,0 +1,12 @@
+{
+    "map": {
+        "projection": "3857",
+        "extent": [],
+        "centerPoint": [],
+        "initZoom": 1,
+        "minZoom": 3,
+        "unit": "m",
+        "domId": "map",
+        "defaultTileLayers": ["osm"]
+    }
+}
