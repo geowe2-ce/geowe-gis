@@ -54,7 +54,7 @@ El fichero de configuración contiene las siguientes propiedades:
         "projection": "EPSG:25830",
         "extent": [97805.10450538254, 3975325.5395915597, 624149.7135073378, 4290248.833085548],
         "centerPoint": [624149.7135073378, 4290248.833085548],
-        "defaultTileLayers": ["raster.carto-dark", "vector.Medina-azahara"]
+        "defaultLayers": ["raster.carto-dark", "vector.Medina-azahara"]
     },
     "raster": {
         "wms1": {
@@ -87,6 +87,7 @@ El fichero de configuración contiene las siguientes propiedades:
     }
 }
 ```
+En este caso, se configura el mapa con proyección EPSG:25830, con la extensión de Andalucía(España) y, además, se indica que inicialmente el mapa cargue el raster **carto-dark** y una capa vectorial ubicada en una url externa.
 
 ## Contributors
 
