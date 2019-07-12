@@ -55,26 +55,7 @@ El fichero de configuración contiene las siguientes propiedades:
         "extent": [97805.10450538254, 3975325.5395915597, 624149.7135073378, 4290248.833085548],
         "centerPoint": [624149.7135073378, 4290248.833085548],
         "defaultLayers": ["raster.carto-dark", "vector.Medina-azahara"]
-    },
-    "raster": {
-        "wms1": {
-            "title": "PNOA Mosaico",
-            "type": "wms",
-            "attributions": "© <a target='_blank' href='http://www.scne.es'>Sistema Cartográfico Nacional</a>",
-            "url": "http://www.ign.es/wms-inspire/pnoa-ma",
-            "layers": "OI.MosaicElement"
-        },
-        "wmts1": {
-            "title": "Argentina WMTS Example",
-            "type": "wmts",
-            "attributions": "© <a target='_blank' href='http://www.scne.es'>Sistema Cartográfico Nacional</a>",
-            "url": "https://ide.ign.gob.ar/geoservicios/rest/services/sensores_remotos/mendoza/ImageServer/WMTS",
-            "layer": "sensores_remotos_mendoza",
-            "format": "image/jpgpng",
-            "style": "default",
-            "matrixSet": "default028mm"
-        }
-    },
+    },    
     "vector": {
         "Medina-azahara": {
             "name": "mi-capa",
@@ -88,6 +69,39 @@ El fichero de configuración contiene las siguientes propiedades:
 }
 ```
 En este caso, se configura el mapa con proyección EPSG:25830, con la extensión de Andalucía(España) y, además, se indica que inicialmente el mapa cargue el raster **carto-dark** y una capa vectorial ubicada en una url externa.
+
+Si se quisiera añadir otra capa, por ejemplo, una capa WMS de un servicio externo (PNOA), el fichero de configuración quedaría de la siguiente forma:
+
+```json
+{
+    "map": {
+        "projection": "EPSG:25830",
+        "extent": [97805.10450538254, 3975325.5395915597, 624149.7135073378, 4290248.833085548],
+        "centerPoint": [624149.7135073378, 4290248.833085548],
+        "defaultLayers": ["raster.carto-dark", "vector.Medina-azahara", "raster.pnoa-mosaico"]
+    },    
+    "vector": {
+        "Medina-azahara": {
+            "name": "mi-capa",
+            "type": "vector",
+            "source": "url",
+            "uri": "https://raw.githubusercontent.com/jmmluna/geodata/master/medina_azahara/Mad%C3%ADnat%20al-Zahra.geojson",
+            "format": "geojson",
+            "srs": "EPSG:4326"
+        }
+    },
+    "raster": {
+        "pnoa-mosaico": {
+            "title": "PNOA Mosaico",
+            "type": "wms",
+            "attributions": "© <a target='_blank' href='http://www.scne.es'>Sistema Cartográfico Nacional</a>",
+            "url": "http://www.ign.es/wms-inspire/pnoa-ma",
+            "layers": "OI.MosaicElement"
+        }
+    }
+}
+```
+Observe que tiene toda la libertad a la hora de definir las categorias y nombrado de las capas personalidas en el JSON de configuración (**raster.pnoa-mosaico**).
 
 ## Contributors
 
