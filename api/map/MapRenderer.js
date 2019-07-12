@@ -41,8 +41,8 @@ export class MapRenderer {
      */
     render() {
         this.id = settingsHolder.getSetting("map.domId");
-        const tileLayers = settingsHolder.getSetting("map.defaultTileLayers");
-        this.defaultTileLayers = layerFactory.getLayers(tileLayers);
+        const layers = settingsHolder.getSetting("map.defaultLayers");
+        this.defaultLayers = layerFactory.getLayers(layers);
         var scaleLineControl = new ScaleLine();
 
         this.map = new Map({
@@ -56,7 +56,7 @@ export class MapRenderer {
                 scaleLineControl
             ]),
             target: document.getElementById(this.id),
-            layers: this.defaultTileLayers,
+            layers: this.defaultLayers,
             loadTilesWhileAnimating: true,
             view: new View({
                 extent: this.extent,

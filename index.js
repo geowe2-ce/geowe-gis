@@ -14,9 +14,9 @@ import appConfig from './appConfig.json';
 import settingsHolder from './api/conf/SettingsHolder';
 
 //settingsHolder.setLocale("en");
-//settingsHolder.loadURLSettings("https://raw.githubusercontent.com/jmmluna/geodata/master/appConfig.json", initialize);
+settingsHolder.loadURLSettings("https://raw.githubusercontent.com/jmmluna/geodata/master/appConfig.json", initialize);
 
-initialize();
+//initialize();
 
 function initialize() {
     const toolbar = new ToolBar("toolbarId");
