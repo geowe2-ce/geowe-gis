@@ -21,11 +21,25 @@ Para usar la librería desde un proyecto Javascript basado en NodeJS, ejecute el
 
 ```javascript
 import { MapRenderer } from 'geowe-gis/api/map/MapRenderer';
-import 'geowe-gis/style/main.css';
 
 const mapRenderer = new MapRenderer();
 mapRenderer.render();
 ```
+Como se puede observar en el ejemplo anterior no se especifica ningún parámetro de mapa al renderizador, éste aplicará los valores establecidos por defecto:
+
+```json
+{
+    "map": {
+        "projection": "3857",        
+        "initZoom": 1,
+        "minZoom": 3,
+        "unit": "m",
+        "domId": "map",
+        "defaultLayers": ["osm"]
+    }
+}
+```
+El mapa se define con la proyección **EPSG:3857**, como capa raster por defecto se usa **OpenStreetMap** y el mapa será renderizado en el DOM con id **map**.
 
 ## Ejemplo personalizado
 
