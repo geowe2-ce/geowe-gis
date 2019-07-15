@@ -1,6 +1,15 @@
 # geowe-gis
 Librería de componentes Open Source en Javascript para el desarrollo de aplicaciones GIS en la web.
 
+## Tabla de contenidos
+
+- [Requerimientos](#Requerimientos)
+- [Instalación](#Instalación)
+- [Ejemplo básico de uso](#Ejemplo-básico-de-uso)
+- [Ejemplo personalizado](#Ejemplo-personalizado)
+- [Contributors](#Contributors)
+- [Copyright and license](#copyright-and-license)
+
 ## Requerimientos
 
 Para comenzar a trabajar con el proyecto necesitará tener Node.js instalado en su entorno. Para **geowe-gis** se han utilizado las siguientes versiones: 
@@ -122,3 +131,7 @@ Observe que tiene toda la libertad a la hora de definir las categorias y nombrad
 * Atanasio Muñoz <ata@geowe.org>
 * Rafael López <rafa@geowe.org>
 * José María Martínez <jose@geowe.org>
+
+## Copyright and license
+
+Código publicado bajo [MIT License](https://github.com/geowe2-ce/geowe-gis/blob/master/LICENSE).
