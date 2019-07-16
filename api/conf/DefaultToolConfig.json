@@ -23,9 +23,33 @@
                 "label": "",
                 "iconFont": "fas fa-globe-americas"
             },
-            "measureTool": {
+            "measureLineStringTool": {
                 "label": "",
-                "iconFont": "fas fa-ruler"
+                "iconFont": "fas fa-ruler",
+                "cursor": "cell",
+                "draw-stroke": "blue",
+                "draw-fill": "blue",
+                "draw-tooltip-bg-color": "blue",
+                "draw-tooltip-text-color": "white",
+                "drawed-stroke": "pink",
+                "drawed-fill": "pink",
+                "drawed-tooltip-bg-color": "pink",
+                "drawed-tooltip-text-color": "green",
+                "keep-single-measurement": true
+            },
+            "measurePolygonTool": {
+                "label": "",
+                "iconFont": "fas fa-ruler-combined",
+                "cursor": "cell",
+                "draw-stroke": "blue",
+                "draw-fill": "rgb(0,0,255,0.3)",
+                "draw-tooltip-bg-color": "blue",
+                "draw-tooltip-text-color": "white",
+                "drawed-stroke": "pink",
+                "drawed-fill": "pink",
+                "drawed-tooltip-bg-color": "pink",
+                "drawed-tooltip-text-color": "green",
+                "keep-single-measurement": false
             }
         }
     },
@@ -54,9 +78,33 @@
                 "label": "",
                 "iconFont": "fas fa-globe-americas"
             },
-            "measureTool": {
+            "measureLineStringTool": {
                 "label": "",
-                "iconFont": "fas fa-ruler"
+                "iconFont": "fas fa-ruler",
+                "cursor": "cell",
+                "draw-stroke": "blue",
+                "draw-fill": "rgb(0,0,255,0.3)",
+                "draw-tooltip-bg-color": "blue",
+                "draw-tooltip-text-color": "white",
+                "drawed-stroke": "pink",
+                "drawed-fill": "pink",
+                "drawed-tooltip-bg-color": "pink",
+                "drawed-tooltip-text-color": "green",
+                "keep-single-measurement": true
+            },
+            "measurePolygonTool": {
+                "label": "",
+                "iconFont": "fas fa-ruler-combined",
+                "cursor": "cell",
+                "draw-stroke": "blue",
+                "draw-fill": "blue",
+                "draw-tooltip-bg-color": "blue",
+                "draw-tooltip-text-color": "white",
+                "drawed-stroke": "pink",
+                "drawed-fill": "pink",
+                "drawed-tooltip-bg-color": "pink",
+                "drawed-tooltip-text-color": "green",
+                "keep-single-measurement": false
             }
         }
     }
