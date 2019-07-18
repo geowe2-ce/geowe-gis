@@ -10,8 +10,10 @@ import { getWidth, getTopLeft } from 'ol/extent.js';
 import Vector from 'ol/layer/Vector';
 import SourceVector from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
-
+import vectorTileLayerFactory from './VectorTileLayerFactory';
 import settingsHolder from '../conf/SettingsHolder';
+
+
 
 class LayerFactory {
     constructor() {
@@ -34,6 +36,9 @@ class LayerFactory {
                 layer = this.getWMTSLayer(layerSettings);
             else if (layerSettings.type == "vector")
                 layer = this.getVectorLayer(layerSettings);
+            else if (layerSettings.type == "vector-tile") {
+                layer = this.getVectorTileLayer(layerSettings);
+            }
         } else
             console.warn("No se ha encontrado la capa " + layerName + ". No olvide indicar el nombre como: <raster|wfs|wmts." + layerName + ">");
 
@@ -112,6 +117,9 @@ class LayerFactory {
     }
 
     getVectorLayer(layerSettings) {
+        //registramos la proyección para transformación
+        Projections.get(layerSettings.srs);
+
         const layerName = layerSettings.uri != undefined ? layerSettings.uri : layerSettings.uri.split('/').pop().split('?')[0];
         const layer = this.getEmptyVectorLayer(layerName);
         this.loadURLFile(layer, layerSettings);
@@ -136,6 +144,26 @@ class LayerFactory {
             const featureCollection = this.geojsonFormat.readFeatures(geojson, { "dataProjection": layerSettings.srs, "featureProjection": mapProjection });
             layer.getSource().addFeatures(featureCollection);
         });
+    }
+
+    getVectorTileLayer(layerSettings) {
+        //registramos la proyección para transformación
+        Projections.get(layerSettings.srs);
+        var layer = vectorTileLayerFactory.getVector();
+
+        fetch(layerSettings.uri).then((response) => {
+            return response.json();
+        }).then((json) => {
+
+            //const geojson = JSON.stringify(json);
+            const mapProjection = settingsHolder.getSetting("map.projection");
+            const featureCollection = this.geojsonFormat.readFeatures(json, { "dataProjection": layerSettings.srs, "featureProjection": mapProjection });
+            const geojsonObj = this.geojsonFormat.writeFeaturesObject(featureCollection, { "featureProjection": mapProjection });
+
+            vectorTileLayerFactory.addData(layer, geojsonObj);
+        });
+
+        return layer;
     }
 }
 

@@ -1,7 +1,7 @@
 import {get as getOLProjection } from 'ol/proj';
 import { register } from 'ol/proj/proj4';
 import proj4 from 'proj4';
-
+import Projection from 'ol/proj/Projection.js';
 const projs = require('epsg-index/all.json')
 
 /**
@@ -28,6 +28,11 @@ export class Projections {
 
         if (projectionCode == 3857 || projectionCode == 4326) {
             projection = getOLProjection("EPSG:" + projectionCode);
+        } else if (projectionCode == "TILE_PIXELS") {
+            projection = new Projection({
+                code: 'TILE_PIXELS',
+                units: 'tile-pixels'
+            });
         } else {
             var epsgProj = projs[projectionCode];
             if (epsgProj != undefined) {

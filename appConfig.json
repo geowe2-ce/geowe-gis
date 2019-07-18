@@ -1,9 +1,9 @@
 {
     "map": {
-        "projection": "EPSG:25830",
-        "extent": [97805.10450538254, 3975325.5395915597, 624149.7135073378, 4290248.833085548],
-        "centerPoint": [624149.7135073378, 4290248.833085548],
-        "defaultLayers": ["osm", "vector.file.Medina-azahara"]
+        "projection": "EPSG:3857",
+        //"extent": [97805.10450538254, 3975325.5395915597, 624149.7135073378, 4290248.833085548],
+        //"centerPoint": [624149.7135073378, 4290248.833085548],
+        "defaultLayers": ["vector.Andalucia-25830", "vector.Publi-Sigpac"] //"osm",, "vector.ImpMunicip_2019"
     },
     "raster": {
         "wms1": {
@@ -24,8 +24,43 @@
             "matrixSet": "default028mm"
         }
     },
-    "vector": {
 
+
+
+
+    "vector": {
+        "Publi-Sigpac": {
+            "name": "Publi-Sigpac",
+            "type": "vector",
+            "source": "url",
+            "uri": "./PubliSigpac.geojson",
+            "format": "geojson",
+            "srs": "EPSG:25830"
+        },
+        "ImpMunicip_2019": {
+            "name": "ImpMunicip_2019",
+            "type": "vector-tile",
+            "source": "url",
+            "uri": "./ImpMunicip_2019.geojson",
+            "format": "geojson",
+            "srs": "EPSG:25830"
+        },
+        "Andalucia": {
+            "name": "Andalucia",
+            "type": "vector",
+            "source": "url",
+            "uri": "./andalucia.geojson",
+            "format": "geojson",
+            "srs": "EPSG:4326"
+        },
+        "Andalucia-25830": {
+            "name": "Andalucia",
+            "type": "vector-tile",
+            "source": "url",
+            "uri": "./Andalucia-25830.geojson",
+            "format": "geojson",
+            "srs": "EPSG:25830"
+        },
         "Medina-azahara": {
             "name": "mi-capa",
             "type": "vector",

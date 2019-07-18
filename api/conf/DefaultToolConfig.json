@@ -6,6 +6,11 @@
                 "iconFont": "far fa-hand-paper",
                 "cursor": "grab"
             },
+            "selectTool": {
+                "label": "",
+                "iconFont": "fas fa-mouse-pointer",
+                "cursor": "alias"
+            },
             "zoomInTool": {
                 "label": "",
                 "iconFont": "fas fa-search-plus"
@@ -60,6 +65,11 @@
                 "label": "",
                 "iconFont": "far fa-hand-paper",
                 "cursor": "grab"
+            },
+            "selectTool": {
+                "label": "",
+                "iconFont": "fas fa-mouse-pointer",
+                "cursor": "alias"
             },
             "zoomInTool": {
                 "label": "",
