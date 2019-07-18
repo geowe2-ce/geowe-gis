@@ -1,3 +1,5 @@
+[![GitHub version](https://badge.fury.io/gh/geowe2-ce%2Fgeowe-gis.svg)](https://badge.fury.io/gh/geowe2-ce%2Fgeowe-gis)
+
 # geowe-gis
 Librería de componentes Open Source en Javascript para el desarrollo de aplicaciones GIS en la web.
 
