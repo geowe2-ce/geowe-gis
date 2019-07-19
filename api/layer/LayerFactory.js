@@ -12,7 +12,8 @@ import SourceVector from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
 import vectorTileLayerFactory from './VectorTileLayerFactory';
 import settingsHolder from '../conf/SettingsHolder';
-
+import { Reader, getGeometryStyles, OlStyler, createOlStyleFunction } from '@nieuwlandgeo/sldreader/src/index';
+import { getLayer as getSLDLayer, getStyle as getSLDStyle } from '@nieuwlandgeo/sldreader/src/Utils';
 
 
 class LayerFactory {
@@ -123,6 +124,8 @@ class LayerFactory {
         const layerName = layerSettings.uri != undefined ? layerSettings.uri : layerSettings.uri.split('/').pop().split('?')[0];
         const layer = this.getEmptyVectorLayer(layerName);
         this.loadURLFile(layer, layerSettings);
+        this.loadURLSLDFile(layer, layerSettings);
+
         return layer;
     }
 
@@ -146,6 +149,22 @@ class LayerFactory {
         });
     }
 
+    loadURLSLDFile(layer, layerSettings) {
+        if (layerSettings.sld == undefined)
+            return;
+
+        fetch(layerSettings.sld).then((response) => {
+                return response.text();
+            })
+            .then((text) => {
+                const sldObject = new Reader(text);
+                const sldLayer = getSLDLayer(sldObject, "PODEMOS"); //"bestuurlijkegrenzen:provincies");
+                const style = getSLDStyle(sldLayer, "PODEMOS"); //'bestuurlijkegrenzen:provincies');
+                const featureTypeStyle = style.featuretypestyles[0];
+                layer.setStyle(createOlStyleFunction(featureTypeStyle));
+            });
+    }
+
     getVectorTileLayer(layerSettings) {
         //registramos la proyección para transformación
         Projections.get(layerSettings.srs);
@@ -162,6 +181,8 @@ class LayerFactory {
 
             vectorTileLayerFactory.addData(layer, geojsonObj);
         });
+
+        this.loadURLSLDFile(layer, layerSettings);
 
         return layer;
     }

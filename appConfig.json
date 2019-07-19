@@ -3,7 +3,7 @@
         "projection": "EPSG:3857",
         //"extent": [97805.10450538254, 3975325.5395915597, 624149.7135073378, 4290248.833085548],
         //"centerPoint": [624149.7135073378, 4290248.833085548],
-        "defaultLayers": ["vector.Andalucia-25830", "vector.Publi-Sigpac"] //"osm",, "vector.ImpMunicip_2019"
+        "defaultLayers": ["vector.2019_Elecc_municp_25830"] //"osm",, "vector.ImpMunicip_2019", "vector.Andalucia-25830","vector.Publi-Sigpac", "vector.restaurantes-cordoba", "vector.ruta-estrella-michelin-cordoba", "vector.Andalucia"
     },
     "raster": {
         "wms1": {
@@ -29,11 +29,21 @@
 
 
     "vector": {
+        "2019_Elecc_municp_25830": {
+            "name": "Publi-Sigpac",
+            "type": "vector",
+            "source": "url",
+            "uri": "./geojson/2019_Elecc_municp_25830.geojson",
+            "format": "geojson",
+            "srs": "EPSG:25830",
+            "sld": "./sld/PODEMOS.sld"
+        },
+
         "Publi-Sigpac": {
             "name": "Publi-Sigpac",
             "type": "vector",
             "source": "url",
-            "uri": "./PubliSigpac.geojson",
+            "uri": "./geojson/PubliSigpac.geojson",
             "format": "geojson",
             "srs": "EPSG:25830"
         },
@@ -41,43 +51,51 @@
             "name": "ImpMunicip_2019",
             "type": "vector-tile",
             "source": "url",
-            "uri": "./ImpMunicip_2019.geojson",
+            "uri": "./geojson/ImpMunicip_2019.geojson",
             "format": "geojson",
             "srs": "EPSG:25830"
         },
         "Andalucia": {
             "name": "Andalucia",
-            "type": "vector",
+            "type": "vector-tile",
             "source": "url",
-            "uri": "./andalucia.geojson",
+            "uri": "./geojson/andalucia.geojson",
             "format": "geojson",
-            "srs": "EPSG:4326"
+            "srs": "EPSG:4326",
+            "sld": "./sld/andalucia.sld"
+
         },
         "Andalucia-25830": {
             "name": "Andalucia",
             "type": "vector-tile",
             "source": "url",
-            "uri": "./Andalucia-25830.geojson",
+            "uri": "./geojson/Andalucia-25830.geojson",
             "format": "geojson",
             "srs": "EPSG:25830"
         },
         "Medina-azahara": {
-            "name": "mi-capa",
+            "name": "medina-azahara",
             "type": "vector",
             "source": "url",
             "uri": "https://raw.githubusercontent.com/jmmluna/geodata/master/medina_azahara/Mad%C3%ADnat%20al-Zahra.geojson",
             "format": "geojson",
             "srs": "EPSG:4326"
         },
-        "wfs": {
-            "name": "mi-capa",
-            "type": "vector",
-            "source": "wfs",
-            "uri": "https://raw.githubusercontent.com/jmmluna/geodata/master/medina_azahara/Mad%C3%ADnat%20al-Zahra.geojson",
+        "restaurantes-cordoba": {
+            "name": "restaurantes-cordoba",
+            "type": "vector-tile",
+            "source": "url",
+            "uri": "https://raw.githubusercontent.com/geowe/geodata/master/gastro-rutas-cordoba/Restaurantes_cordoba_provincia_WGS84.geojson",
             "format": "geojson",
             "srs": "EPSG:4326"
+        },
+        "ruta-estrella-michelin-cordoba": {
+            "name": "restaurantes-cordoba",
+            "type": "vector-tile",
+            "source": "url",
+            "uri": "https://raw.githubusercontent.com/geowe/geodata/master/gastro-rutas-cordoba/Ruta_estrellas_michelin_cordoba_epsg3857.geojson",
+            "format": "geojson",
+            "srs": "EPSG:3857"
         }
-
-
     }
 }

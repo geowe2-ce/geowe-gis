@@ -6,48 +6,48 @@ import MultiPoint from 'ol/geom/MultiPoint';
 import Vector from 'ol/layer/Vector';
 import { boundingExtent } from 'ol/extent';
 import { Control } from './Control';
+import Polygon from 'ol/geom/Polygon';
+import LineString from 'ol/geom/LineString';
+import Point from 'ol/geom/Point';
+import spatialEngine from '../spatial/SpatialEngine';
+import { VectorTile } from 'ol/layer.js';
 
 export class SelectControl extends Control {
     constructor(map) {
         super(map);
 
         this.selectControl = new Select({
-            //layers: [this.vector],
-            /*condition: click,
+            layers: undefined,
             toggleCondition: shiftKeyOnly,
-            multi: true,*/
             style: this.getStyle
         });
 
         this.selectControl.on('select', (e) => {
 
             var feature = e.selected[0];
-            this.selectedFeatures.clear();
-            if (feature != undefined) {
-                //var extent = feature.getGeometry().getExtent();
 
-                var extent = boundingExtent([feature.getGeometry().getFirstCoordinate(), feature.getGeometry().getLastCoordinate()]);
+            if (feature != undefined && feature.vectorType == "vector-tile") {
 
-                this.map.getLayers().forEach((layer) => {
-                    if (layer instanceof Vector) {
-                        layer.getSource().forEachFeatureIntersectingExtent(extent, (feature) => {
-                            this.selectedFeatures.push(feature);
-                        });
-                    }
-                });
+                var extent = undefined;
+                var point = undefined;
+                var geom = feature.getGeometry();
+
+                if (geom instanceof Polygon) {
+                    this.selectedFeatures.pop()
+                    point = geom.getInteriorPoint();
+                    //point = spatialEngine.getCentroid(geom);
+
+                } else if (geom instanceof LineString) {
+                    this.selectedFeatures.pop()
+                    geom = spatialEngine.bufferGeometry(geom, 5);
+                    point = geom.getInteriorPoint();
+                }
+
+                if (point != undefined) {
+                    extent = spatialEngine.bufferGeometry(point, 50).getExtent();
+                    this.setSelectedFeaturesByExtent(extent);
+                }
             }
-
-            //alert("entro: " + e.type);
-            //alert(JSON.stringify(e));
-            //this.selectedFeatures.clear();
-            /* this_.selectedFeatures = this.getFeatures();
-    
-            if (this_.selectedFeatures != undefined && this_.selectedFeatures.getLength() > 0) {
-                this_.onClickEvent(this.getFeatures().getArray());
-            } else {
-                this_.onClickEvent([]);
-            }
-            //alert("eleccion");*/
         });
 
 
@@ -64,18 +64,17 @@ export class SelectControl extends Control {
 
         this.dragBoxControl.on('boxend', () => {
             var extent = this.dragBoxControl.getGeometry().getExtent();
+            this.setSelectedFeaturesByExtent(extent);
+        });
+    }
 
-            this.map.getLayers().forEach((layer) => {
-                if (layer instanceof Vector) {
-                    layer.getSource().forEachFeatureIntersectingExtent(extent, (feature) => {
-                        this.selectedFeatures.push(feature);
-                    });
-                }
-            });
-
-
-
-
+    setSelectedFeaturesByExtent(extent) {
+        this.map.getLayers().forEach((layer) => {
+            if (layer instanceof Vector) {
+                layer.getSource().forEachFeatureIntersectingExtent(extent, (feature) => {
+                    this.selectedFeatures.push(feature);
+                });
+            }
         });
     }
 
@@ -104,8 +103,6 @@ export class SelectControl extends Control {
         return selectStyle;
     }
 
-
-
     enable(enabled) {
         this.selectedFeatures = this.selectControl.getFeatures();
         this.selectedFeatures.clear();
@@ -119,6 +116,5 @@ export class SelectControl extends Control {
             this.map.removeInteraction(this.dragBoxControl);
         }
     }
-
 
 }

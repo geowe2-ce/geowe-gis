@@ -32,6 +32,11 @@ class VectorTileLayerFactory {
                         type: 'FeatureCollection',
                         features: data ? data.features : []
                     }, this.replacer));
+
+                features.forEach((feature) => {
+                    feature.vectorType = "vector-tile";
+                });
+
                 tile.setLoader(() => {
                     //vectorSource.setFeatures(features);
                     tile.setFeatures(features);

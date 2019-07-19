@@ -44,6 +44,7 @@
         "parcel-bundler": "^1.12.3"
     },
     "dependencies": {
+        "@nieuwlandgeo/sldreader": "0.0.7",
         "epsg-index": "^0.22.0",
         "file-saver": "2.0.0-rc.4",
         "geojson-vt": "^3.2.1",
