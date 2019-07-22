@@ -20,6 +20,21 @@ import settingsHolder from './api/conf/SettingsHolder';
 settingsHolder.loadSettings(appConfig);
 initialize();
 
+
+/*var params = new URLSearchParams(location.search);
+if (params != '') {
+   
+    this.handleParams(params);
+
+}
+
+
+UrlParser.prototype.handleParams = function(params) {
+if (params.has("add-layer")) {*/
+
+
+
+
 function initialize() {
 
     const toolbar = new ToolBar("toolbarId");

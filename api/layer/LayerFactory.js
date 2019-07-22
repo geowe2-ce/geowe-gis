@@ -158,8 +158,8 @@ class LayerFactory {
             })
             .then((text) => {
                 const sldObject = new Reader(text);
-                const sldLayer = getSLDLayer(sldObject, "PODEMOS"); //"bestuurlijkegrenzen:provincies");
-                const style = getSLDStyle(sldLayer, "PODEMOS"); //'bestuurlijkegrenzen:provincies');
+                const sldLayer = getSLDLayer(sldObject, layerSettings.sldLayer); //"bestuurlijkegrenzen:provincies");
+                const style = getSLDStyle(sldLayer, layerSettings.sldLayer); //'bestuurlijkegrenzen:provincies');
                 const featureTypeStyle = style.featuretypestyles[0];
                 layer.setStyle(createOlStyleFunction(featureTypeStyle));
             });

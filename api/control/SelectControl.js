@@ -33,12 +33,12 @@ export class SelectControl extends Control {
                 var geom = feature.getGeometry();
 
                 if (geom instanceof Polygon) {
-                    this.selectedFeatures.pop()
+                    this.selectedFeatures.pop();
                     point = geom.getInteriorPoint();
                     //point = spatialEngine.getCentroid(geom);
 
                 } else if (geom instanceof LineString) {
-                    this.selectedFeatures.pop()
+                    this.selectedFeatures.pop();
                     geom = spatialEngine.bufferGeometry(geom, 5);
                     point = geom.getInteriorPoint();
                 }
