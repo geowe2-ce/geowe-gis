@@ -10,14 +10,17 @@ import { ZoomOutTool } from './api/tool/zoom/ZoomOutTool';
 import { ZoomBoxTool } from './api/tool/zoom/ZoomBoxTool';
 import { MeasureLineStringTool } from './api/tool/measure/MeasureLineStringTool';
 import { MeasurePolygonTool } from './api/tool/measure/MeasurePolygonTool';
+import { QuickFeatureInfoTool } from './api/tool/info/QuickFeatureInfoTool';
 
 import appConfig from './appConfig.json';
 import settingsHolder from './api/conf/SettingsHolder';
+import en from './api/i18n/en_en.json';
 
 //settingsHolder.setLocale("en");
 //settingsHolder.loadURLSettings("https://raw.githubusercontent.com/jmmluna/geodata/master/appConfig.json", initialize);
 
 settingsHolder.loadSettings(appConfig);
+// settingsHolder.loadSettings(en);
 initialize();
 
 
@@ -51,6 +54,7 @@ function initialize() {
     const zoomBoxTool = new ZoomBoxTool(mapRenderer.getMap());
     const measureLineStringTool = new MeasureLineStringTool(mapRenderer.getMap());
     const measurePolygonTool = new MeasurePolygonTool(mapRenderer.getMap());
+    const quickFeatureInfoTool = new QuickFeatureInfoTool(mapRenderer.getMap());
 
 
     toolbar.addTool(panTool.getUIElement(), "tools", true);
@@ -61,7 +65,7 @@ function initialize() {
     toolbar.addTool(zoomBoxTool.getUIElement(), "tools");
     toolbar.addTool(measureLineStringTool.getUIElement(), "tools");
     toolbar.addTool(measurePolygonTool.getUIElement(), "tools");
-
+    toolbar.addTool(quickFeatureInfoTool.getUIElement(), "tools");
 
 }
 

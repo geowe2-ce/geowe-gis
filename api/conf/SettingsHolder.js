@@ -2,14 +2,11 @@ import defaultMapConfig from '../conf/DefaultMapConfig.json';
 import defaultLayerCatalog from '../conf/DefaultLayerCatalog.json';
 import defaultToolConfig from '../conf/DefaultToolConfig.json';
 
+import es_es from '../i18n/es_es.json';
+
 class SettingsHolder {
     constructor() {
-        this.locale = "es";
         this.settings = {};
-    }
-
-    setLocale(lang) {
-        this.locale = lang;
     }
 
     loadSettings(settings) {
@@ -40,11 +37,6 @@ class SettingsHolder {
                 this.setSetting(currentParent + "." + key, jsonObj[key]);
             }
         }
-    }
-
-    getLocalizedSetting(key) {
-        const setting = this.getSetting(`${this.locale}.${key}`);
-        return setting != undefined ? setting : "fas fa-question-circle"; //"####";
     }
 
     getSetting(key) {
@@ -94,5 +86,6 @@ const settingsHolder = new SettingsHolder();
 settingsHolder.loadSettings(defaultMapConfig);
 settingsHolder.loadSettings(defaultLayerCatalog);
 settingsHolder.loadSettings(defaultToolConfig);
+settingsHolder.loadSettings(es_es);
 
 export default settingsHolder;

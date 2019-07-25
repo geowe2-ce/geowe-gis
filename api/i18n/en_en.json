@@ -1,0 +1,28 @@
+{
+    "tool": {
+        "panTool": {
+            "label": ""
+        },
+        "selectTool": {
+            "label": "Select"
+        },
+        "zoomInTool": {
+            "label": ""
+        },
+        "zoomOutTool": {
+            "label": ""
+        },
+        "zoomBoxTool": {
+            "label": ""
+        },
+        "zoomToExtentTool": {
+            "label": ""
+        },
+        "measureLineStringTool": {
+            "label": ""
+        },
+        "measurePolygonTool": {
+            "label": ""
+        }
+    }
+}

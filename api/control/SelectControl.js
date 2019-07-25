@@ -117,4 +117,7 @@ export class SelectControl extends Control {
         }
     }
 
+    getFeatures() {
+        return this.selectControl.getFeatures();
+    }
 }

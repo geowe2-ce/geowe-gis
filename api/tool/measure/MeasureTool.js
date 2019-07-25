@@ -7,27 +7,26 @@ export class MeasureTool extends ToggleButtonTool {
         super({ id: id, map: map });
         this.measureControl = new MeasureControl(type, map);
 
-        const drawStrokeColor = this.getSettingsHolder().getLocalizedSetting(`tool.${this.getId()}.draw-stroke`);
-        const drawFillColor = this.getSettingsHolder().getLocalizedSetting(`tool.${this.getId()}.draw-fill`);
-        const drawTooltipBgColor = this.getSettingsHolder().getLocalizedSetting(`tool.${this.getId()}.draw-tooltip-bg-color`);
-        const drawTooltipTextColor = this.getSettingsHolder().getLocalizedSetting(`tool.${this.getId()}.draw-tooltip-text-color`);
+        const drawStrokeColor = this.getSettingsHolder().getSetting(`tool.${this.getId()}.draw-stroke`);
+        const drawFillColor = this.getSettingsHolder().getSetting(`tool.${this.getId()}.draw-fill`);
+        const drawTooltipBgColor = this.getSettingsHolder().getSetting(`tool.${this.getId()}.draw-tooltip-bg-color`);
+        const drawTooltipTextColor = this.getSettingsHolder().getSetting(`tool.${this.getId()}.draw-tooltip-text-color`);
 
-        const drawedStrokeColor = this.getSettingsHolder().getLocalizedSetting(`tool.${this.getId()}.drawed-stroke`);
-        const drawedFillColor = this.getSettingsHolder().getLocalizedSetting(`tool.${this.getId()}.drawed-fill`);
-        const drawedTooltipBgColor = this.getSettingsHolder().getLocalizedSetting(`tool.${this.getId()}.drawed-tooltip-bg-color`);
-        const drawedTooltipTextColor = this.getSettingsHolder().getLocalizedSetting(`tool.${this.getId()}.drawed-tooltip-text-color`);
-        const keepSingleMeasurement = this.getSettingsHolder().getLocalizedSetting(`tool.${this.getId()}.keep-single-measurement`);
-
+        const drawnStrokeColor = this.getSettingsHolder().getSetting(`tool.${this.getId()}.drawn-stroke`);
+        const drawnFillColor = this.getSettingsHolder().getSetting(`tool.${this.getId()}.drawn-fill`);
+        const drawnTooltipBgColor = this.getSettingsHolder().getSetting(`tool.${this.getId()}.drawn-tooltip-bg-color`);
+        const drawnTooltipTextColor = this.getSettingsHolder().getSetting(`tool.${this.getId()}.drawn-tooltip-text-color`);
+        const keepSingleMeasurement = this.getSettingsHolder().getSetting(`tool.${this.getId()}.keep-single-measurement`);
 
         this.measureControl.setDrawStrokeColor(drawStrokeColor);
         this.measureControl.setDrawFillColor(drawFillColor);
         this.measureControl.setDrawTooltipBgColor(drawTooltipBgColor);
         this.measureControl.setDrawTooltipTextColor(drawTooltipTextColor);
 
-        this.measureControl.setDrawedStrokeColor(drawedStrokeColor);
-        this.measureControl.setDrawedFillColor(drawedFillColor);
-        this.measureControl.setDrawedTooltipBgColor(drawedTooltipBgColor);
-        this.measureControl.setDrawedTooltipTextColor(drawedTooltipTextColor);
+        this.measureControl.setDrawnStrokeColor(drawnStrokeColor);
+        this.measureControl.setDrawnFillColor(drawnFillColor);
+        this.measureControl.setDrawnTooltipBgColor(drawnTooltipBgColor);
+        this.measureControl.setDrawnTooltipTextColor(drawnTooltipTextColor);
 
         this.measureControl.setKeepSingleMeasurement(keepSingleMeasurement);
     }

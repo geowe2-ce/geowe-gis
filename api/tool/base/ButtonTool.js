@@ -5,9 +5,11 @@ export class ButtonTool extends Tool {
     constructor(options) {
         super(new SimpleButton(options.id, options.label, options.iconFont, function() {}), options.map);
 
-        this.getUIElement().addIcon(this.getSettingsHolder().getLocalizedSetting(`tool.${options.id}.iconFont`));
-        this.getUIElement().label = " " + this.getSettingsHolder().getLocalizedSetting(`tool.${options.id}.label`);
-        this.getUIElement().showLabel(true);
+        this.getUIElement().addIcon(this.getSettingsHolder().getSetting(`tool.${options.id}.iconFont`));
+        const label = this.getSettingsHolder().getSetting(`tool.${options.id}.label`);
+        this.getUIElement().label = label == undefined ? "" : " " + label;
+        this.getUIElement().showLabel(label == undefined);
+
         this.getUIElement().getDOMObject().addEventListener("click", this.onToolClicked.bind(this));
     }
 

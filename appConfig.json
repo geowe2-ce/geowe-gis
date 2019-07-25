@@ -3,7 +3,7 @@
         "projection": "EPSG:3857",
         //"extent": [97805.10450538254, 3975325.5395915597, 624149.7135073378, 4290248.833085548],
         //"centerPoint": [624149.7135073378, 4290248.833085548],
-        "defaultLayers": ["raster.carto-dark", "vector.2019_Elecc_municp_25830"] //"osm",, "vector.ImpMunicip_2019", "vector.Andalucia-25830","vector.Publi-Sigpac", "vector.restaurantes-cordoba", "vector.ruta-estrella-michelin-cordoba", "vector.Andalucia"
+        "defaultLayers": ["vector.Andalucia-25830", "vector.2019_Elecc_municp_25830"] //"osm",, "vector.ImpMunicip_2019", "vector.Andalucia-25830","vector.Publi-Sigpac", "vector.restaurantes-cordoba", "vector.ruta-estrella-michelin-cordoba", "vector.Andalucia"
     },
     "raster": {
         "wms1": {
@@ -30,8 +30,8 @@
 
     "vector": {
         "2019_Elecc_municp_25830": {
-            "name": "Publi-Sigpac",
-            "type": "vector-tile",
+            "name": "2019_Elecc_municp_25830",
+            "type": "vector",
             "source": "url",
             "uri": "./geojson/2019_Elecc_municp_25830.geojson",
             "format": "geojson",
@@ -67,7 +67,7 @@
         },
         "Andalucia-25830": {
             "name": "Andalucia",
-            "type": "vector-tile",
+            "type": "vector",
             "source": "url",
             "uri": "./geojson/Andalucia-25830.geojson",
             "format": "geojson",

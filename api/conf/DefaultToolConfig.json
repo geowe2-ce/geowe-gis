@@ -1,121 +1,55 @@
 {
-    "es": {
-        "tool": {
-            "panTool": {
-                "label": "",
-                "iconFont": "far fa-hand-paper",
-                "cursor": "grab"
-            },
-            "selectTool": {
-                "label": "",
-                "iconFont": "fas fa-mouse-pointer",
-                "cursor": "alias"
-            },
-            "zoomInTool": {
-                "label": "",
-                "iconFont": "fas fa-search-plus"
-            },
-            "zoomOutTool": {
-                "label": "",
-                "iconFont": "fas fa-search-minus"
-            },
-            "zoomBoxTool": {
-                "label": "",
-                "iconFont": "ms ms-zoom-box",
-                "cursor": "zoom-in"
-            },
-            "zoomToExtentTool": {
-                "label": "",
-                "iconFont": "fas fa-globe-americas"
-            },
-            "measureLineStringTool": {
-                "label": "",
-                "iconFont": "fas fa-ruler",
-                "cursor": "cell",
-                "draw-stroke": "blue",
-                "draw-fill": "blue",
-                "draw-tooltip-bg-color": "blue",
-                "draw-tooltip-text-color": "white",
-                "drawed-stroke": "pink",
-                "drawed-fill": "pink",
-                "drawed-tooltip-bg-color": "pink",
-                "drawed-tooltip-text-color": "green",
-                "keep-single-measurement": true
-            },
-            "measurePolygonTool": {
-                "label": "",
-                "iconFont": "fas fa-ruler-combined",
-                "cursor": "cell",
-                "draw-stroke": "blue",
-                "draw-fill": "rgb(0,0,255,0.3)",
-                "draw-tooltip-bg-color": "blue",
-                "draw-tooltip-text-color": "white",
-                "drawed-stroke": "pink",
-                "drawed-fill": "pink",
-                "drawed-tooltip-bg-color": "pink",
-                "drawed-tooltip-text-color": "green",
-                "keep-single-measurement": false
-            }
-        }
-    },
-
-    "en": {
-        "tool": {
-            "panTool": {
-                "label": "",
-                "iconFont": "far fa-hand-paper",
-                "cursor": "grab"
-            },
-            "selectTool": {
-                "label": "",
-                "iconFont": "fas fa-mouse-pointer",
-                "cursor": "alias"
-            },
-            "zoomInTool": {
-                "label": "",
-                "iconFont": "fas fa-search-plus"
-            },
-            "zoomOutTool": {
-                "label": "",
-                "iconFont": "fas fa-search-minus"
-            },
-            "zoomBoxTool": {
-                "label": "",
-                "iconFont": "ms ms-zoom-box",
-                "cursor": "zoom-in"
-            },
-            "zoomToExtentTool": {
-                "label": "",
-                "iconFont": "fas fa-globe-americas"
-            },
-            "measureLineStringTool": {
-                "label": "",
-                "iconFont": "fas fa-ruler",
-                "cursor": "cell",
-                "draw-stroke": "blue",
-                "draw-fill": "rgb(0,0,255,0.3)",
-                "draw-tooltip-bg-color": "blue",
-                "draw-tooltip-text-color": "white",
-                "drawed-stroke": "pink",
-                "drawed-fill": "pink",
-                "drawed-tooltip-bg-color": "pink",
-                "drawed-tooltip-text-color": "green",
-                "keep-single-measurement": true
-            },
-            "measurePolygonTool": {
-                "label": "",
-                "iconFont": "fas fa-ruler-combined",
-                "cursor": "cell",
-                "draw-stroke": "blue",
-                "draw-fill": "blue",
-                "draw-tooltip-bg-color": "blue",
-                "draw-tooltip-text-color": "white",
-                "drawed-stroke": "pink",
-                "drawed-fill": "pink",
-                "drawed-tooltip-bg-color": "pink",
-                "drawed-tooltip-text-color": "green",
-                "keep-single-measurement": false
-            }
+    "tool": {
+        "panTool": {
+            "iconFont": "far fa-hand-paper",
+            "cursor": "grab"
+        },
+        "selectTool": {
+            "iconFont": "fas fa-mouse-pointer",
+            "cursor": "alias"
+        },
+        "zoomInTool": {
+            "iconFont": "fas fa-search-plus"
+        },
+        "zoomOutTool": {
+            "iconFont": "fas fa-search-minus"
+        },
+        "zoomBoxTool": {
+            "iconFont": "ms ms-zoom-box",
+            "cursor": "zoom-in"
+        },
+        "zoomToExtentTool": {
+            "iconFont": "fas fa-globe-americas"
+        },
+        "measureLineStringTool": {
+            "iconFont": "fas fa-ruler",
+            "cursor": "cell",
+            "draw-stroke": "blue",
+            "draw-fill": "blue",
+            "draw-tooltip-bg-color": "blue",
+            "draw-tooltip-text-color": "white",
+            "drawn-stroke": "pink",
+            "drawn-fill": "pink",
+            "drawn-tooltip-bg-color": "pink",
+            "drawn-tooltip-text-color": "green",
+            "keep-single-measurement": true
+        },
+        "measurePolygonTool": {
+            "iconFont": "fas fa-ruler-combined",
+            "cursor": "cell",
+            "draw-stroke": "blue",
+            "draw-fill": "rgb(0,0,255,0.3)",
+            "draw-tooltip-bg-color": "blue",
+            "draw-tooltip-text-color": "white",
+            "drawn-stroke": "pink",
+            "drawn-fill": "pink",
+            "drawn-tooltip-bg-color": "pink",
+            "drawn-tooltip-text-color": "green",
+            "keep-single-measurement": false
+        },
+        "quickFeatureInfoTool": {
+            "iconFont": "far fa-sticky-note",
+            "cursor": "help"
         }
     }
 }

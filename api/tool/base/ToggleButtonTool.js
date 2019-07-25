@@ -6,10 +6,13 @@ export class ToggleButtonTool extends Tool {
     constructor(options) {
         super(new ToggleButton(options.id, options.label, options.iconFont, function() {}), options.map);
 
-        this.cursor = this.getSettingsHolder().getLocalizedSetting(`tool.${options.id}.cursor`);
-        this.getUIElement().addIcon(this.getSettingsHolder().getLocalizedSetting(`tool.${options.id}.iconFont`));
-        this.getUIElement().label = " " + this.getSettingsHolder().getLocalizedSetting(`tool.${options.id}.label`);
-        this.getUIElement().showLabel(true);
+        this.cursor = this.getSettingsHolder().getSetting(`tool.${options.id}.cursor`);
+        this.getUIElement().addIcon(this.getSettingsHolder().getSetting(`tool.${options.id}.iconFont`));
+
+        const label = this.getSettingsHolder().getSetting(`tool.${options.id}.label`);
+        this.getUIElement().label = label == undefined ? "" : " " + label;
+        this.getUIElement().showLabel(label == undefined);
+
         this.getUIElement().setActive = (notifyEvent) => {
             ToggleButton.prototype.setActive.call(this.getUIElement(), notifyEvent);
             this.onToggle(true);

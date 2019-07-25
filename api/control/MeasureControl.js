@@ -78,20 +78,20 @@ export class MeasureControl extends Control {
         this.drawTooltipTextColor = color;
     }
 
-    setDrawedStrokeColor(color) {
+    setDrawnStrokeColor(color) {
         this.measureLayer.getStyle().getStroke().setColor(color);
     }
 
-    setDrawedFillColor(color) {
+    setDrawnFillColor(color) {
         this.measureLayer.getStyle().getFill().setColor(color);
     }
 
-    setDrawedTooltipBgColor(color) {
-        this.drawedTooltipBgColor = color;
+    setDrawnTooltipBgColor(color) {
+        this.drawnTooltipBgColor = color;
     }
 
-    setDrawedTooltipTextColor(color) {
-        this.drawedTooltipTextColor = color;
+    setDrawnTooltipTextColor(color) {
+        this.drawnTooltipTextColor = color;
     }
 
     setKeepSingleMeasurement(state) {
@@ -175,8 +175,8 @@ export class MeasureControl extends Control {
 
         draw.on('drawend', () => {
             this.measureTooltipElement.className = 'tooltip tooltip-static';
-            this.measureTooltipElement.style.backgroundColor = this.drawedTooltipBgColor;
-            this.measureTooltipElement.style.color = this.drawedTooltipTextColor;
+            this.measureTooltipElement.style.backgroundColor = this.drawnTooltipBgColor;
+            this.measureTooltipElement.style.color = this.drawnTooltipTextColor;
             this.staticTooltip.push(this.measureTooltipElement);
             this.measureTooltip.setOffset([0, -7]);
             sketch = null;
