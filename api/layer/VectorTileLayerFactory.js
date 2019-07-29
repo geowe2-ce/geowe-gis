@@ -34,6 +34,7 @@ class VectorTileLayerFactory {
                     }, this.replacer));
 
                 features.forEach((feature) => {
+                    feature.layerName = layer.get("name");
                     feature.vectorType = "vector-tile";
                 });
 
@@ -83,6 +84,9 @@ class VectorTileLayerFactory {
         }
 
         const featureCollection = this.geojsonFormat.readFeatures(geojson, { "featureProjection": "EPSG:3857" });
+        featureCollection.forEach((feature) => {
+            feature.layerName = layer.get("name");
+        });
         vectorSource.setFeatures(featureCollection);
 
         layer.setSource(vectorSource);
@@ -92,7 +96,7 @@ class VectorTileLayerFactory {
         return this.featuresForZ;
     }
 
-    getVector() {
+    getVector(name) {
         var vectorLayer = new VectorTileLayer({
             style: new Style({
                     fill: new Fill({
@@ -112,6 +116,7 @@ class VectorTileLayerFactory {
                 //source: new VectorTileSource({})
         });
 
+        vectorLayer.name = name;
         return vectorLayer;
     }
 

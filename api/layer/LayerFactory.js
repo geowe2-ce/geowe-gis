@@ -120,11 +120,13 @@ class LayerFactory {
     getVectorLayer(layerSettings) {
         //registramos la proyección para transformación
         Projections.get(layerSettings.srs);
+        const layer = this.getEmptyVectorLayer(layerSettings.name);
 
-        const layerName = layerSettings.uri != undefined ? layerSettings.uri : layerSettings.uri.split('/').pop().split('?')[0];
-        const layer = this.getEmptyVectorLayer(layerName);
-        this.loadURLFile(layer, layerSettings);
-        this.loadURLSLDFile(layer, layerSettings);
+        if (layerSettings.uri != undefined) {
+            //const layerName = layerSettings.name != undefined ? layerSettings.name : layerSettings.uri.split('/').pop().split('?')[0];           
+            this.loadURLFile(layer, layerSettings);
+            this.loadURLSLDFile(layer, layerSettings);
+        }
 
         return layer;
     }
@@ -145,6 +147,11 @@ class LayerFactory {
             const geojson = JSON.stringify(json);
             const mapProjection = settingsHolder.getSetting("map.projection");
             const featureCollection = this.geojsonFormat.readFeatures(geojson, { "dataProjection": layerSettings.srs, "featureProjection": mapProjection });
+
+            featureCollection.forEach((feature) => {
+                feature.layerName = layerSettings.name; //layer.get("name");
+            });
+
             layer.getSource().addFeatures(featureCollection);
         });
     }
@@ -168,7 +175,7 @@ class LayerFactory {
     getVectorTileLayer(layerSettings) {
         //registramos la proyección para transformación
         Projections.get(layerSettings.srs);
-        var layer = vectorTileLayerFactory.getVector();
+        var layer = vectorTileLayerFactory.getVector(layerSettings.name);
 
         fetch(layerSettings.uri).then((response) => {
             return response.json();

@@ -9,6 +9,9 @@
     color: white;
     border: 0;
     transition: opacity 100ms ease-in;
+    overflow-y: auto;
+    height: 50vh;
+    width: 30vh;
 }
 
 .feature-separator {
