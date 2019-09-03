@@ -4,6 +4,9 @@
 # geowe-gis
 Librería de componentes Open Source en Javascript para el desarrollo de aplicaciones GIS en la web.
 
+## ¿Por qué usar geowe-gis?
+GeoWE-GIS surge con la premisa de maximizar la flexibilidad en la configuración de las aplicaciones GIS, permitiendo la personalización en tiempo de ejecución a través de ficheros de configuración en formato JSON. Esto aporta una gran versatilidad y sencillez en la definición de las aplicaciones.
+
 ## Tabla de contenidos
 
 - [Requerimientos](#Requerimientos)
@@ -14,7 +17,6 @@ Librería de componentes Open Source en Javascript para el desarrollo de aplicac
 - [Copyright and license](#copyright-and-license)
 
 ## Requerimientos
-
 Para comenzar a trabajar con el proyecto necesitará tener Node.js instalado en su entorno. Para **geowe-gis** se han utilizado las siguientes versiones: 
 
     $ node --version
@@ -24,12 +26,12 @@ Para comenzar a trabajar con el proyecto necesitará tener Node.js instalado en 
     6.4.1
 
 ## Instalación
-
 Para usar la librería desde un proyecto Javascript basado en NodeJS, ejecute el siguiente comando:
 
     npm install --save geowe-gis 
 
 ## Ejemplo básico de uso
+Cualquier aplicación basada en esta librería deberá hacer uso de la clase **MapRenderer** para establecer la configuración y mostrar el mapa dentro de la misma. El siguiente código muestra el uso básico de esta clase:
 
 ```javascript
 import { MapRenderer } from 'geowe-gis/api/map/MapRenderer';
@@ -37,7 +39,37 @@ import { MapRenderer } from 'geowe-gis/api/map/MapRenderer';
 const mapRenderer = new MapRenderer();
 mapRenderer.render();
 ```
-Como se puede observar en el ejemplo anterior no se especifica ningún parámetro de mapa al renderizador, éste aplicará los valores establecidos por defecto:
+Como se puede observar, en el ejemplo anterior no se especifica ningún parámetro de mapa al renderizador, por lo que éste aplicará los valores establecidos por defecto.
+
+## Fichero de configuración
+Si se desea modificar la configuración por defecto, será necesario definir un fichero JSON que contenga los parámetros propios de la aplicación. Este fichero puede ubicarse en una ruta local del proyecto o bien en una URI accesible de manera remota, y para cargarlo se utilizará la clase **SettingsHolder**.
+
+### Ejemplo de configuración mediante fichero local
+```javascript
+import appConfig from './appConfig.json';
+import { MapRenderer } from 'geowe-gis/api/map/MapRenderer';
+import settingsHolder from 'geowe-gis/api/conf/SettingsHolder';
+import 'geowe-gis/style/main.css';
+
+settingsHolder.loadSettings(appConfig);
+const mapRenderer = new MapRenderer();
+mapRenderer.render();
+```
+
+### Ejemplo de configuración mediante fichero remoto
+```javascript
+import { MapRenderer } from 'geowe-gis/api/map/MapRenderer';
+import settingsHolder from 'geowe-gis/api/conf/SettingsHolder';
+import 'geowe-gis/style/main.css';
+
+settingsHolder.loadURLSettings("https://raw.githubusercontent.com/jmmluna/geodata/master/appConfig.json", ()=>{
+    const mapRenderer = new MapRenderer();
+    mapRenderer.render();
+});
+```
+
+### Formato del fichero de configuración
+Cuando se carga un fichero de configuración personalizado, GeoWE-GIS sobrescribe solamente aquellos parámetros especificados en el mismo, manteniendo aquellos que ya existan previamente. Si no se especifica ninguna configuración se aplicará la establecida por defecto:
 
 ```json
 {
@@ -51,28 +83,54 @@ Como se puede observar en el ejemplo anterior no se especifica ningún parámetr
     }
 }
 ```
-El mapa se define con la proyección **EPSG:3857**, como capa raster por defecto se usa **OpenStreetMap** y el mapa será renderizado en el DOM con id **map**.
 
-## Ejemplo personalizado
+El núcleo principal del fichero de configuración es el objeto **map**, que describe las propiedades principales del mapa:
 
-En este ejemplo se personaliza la configuración del mapa mediante un fichero externo. 
+| Nombre                  |   Desc.   |
+| ----------------------- | --------- |
+| projection              | Sistema de referencia      |
+| initZoom                | Valor del zoom establecido en la carga de la aplicación      |
+| minZoom                 | Valor mínimo permitido para el zoom          |
+| unit                    | Unidad de medida base de distancia para el mapa          |
+| domId                   | Identificador del elemento contenedor HTML donde se debe renderizar el mapa |     
+| defaultLayers           | Array de identificadores de capas (vectoriales y rásters) 
 
-```javascript
-import { MapRenderer } from 'geowe-gis/api/map/MapRenderer';
-import settingsHolder from 'geowe-gis/api/conf/SettingsHolder';
-import 'geowe-gis/style/main.css';
+En **defaultLayers** se especifican los identicadores de las capas a cargar al inicio de la aplicación- **GeoWE-GIS** ofrece de partida un conjunto de identificadores para las capas raster listos para usar:
 
-//Carga de la configuración del mapa vía URL
-settingsHolder.loadURLSettings("https://raw.githubusercontent.com/jmmluna/geodata/master/appConfig.json", ()=>{
-    //Mapas raster base soportadas por el catálogo por defecto de geowe-gis
-    //"osm", "raster.carto-light", "raster.carto-dark", "raster.catastro", "raster.ign-base", "raster.ign-fondo", ""raster.ign-raster", "raster.pnoa-ortho", "raster.pnoa-mosaic"
 
-    const mapRenderer = new MapRenderer();
-    mapRenderer.render();
-});
+| Nombre                  |   Desc.   |
+| ----------------------- | --------- |
+| osm                   | Mapa base de OpenStreetMap      |
+| raster.carto-light                    |Mapa base de Carto       |
+| raster.carto-dark            | Mapa base de Carto          |
+| raster.catastro                     | Mapa base de Catastro de España          |
+| raster.ign-base                  | Mapa base de IGN |
+| raster.ign-fondo                  | Mapa base de IGN |
+| raster.ign-raster                  | Mapa base de IGN |
+| raster.pnoa-ortho                  | Mapa base de PNOA |
+| raster.pnoa-mosaic                  | Mapa base de PNOA |
+
+Se pueden especificar nuevos identificadores de capas que deberán estar definidos en el fichero como nuevos objetos JSON, indicando el nivel de anidamiento que se desee para su categorización. A continuación se crea un nuevo identificador (myRasters.myWms.wms1) de una capa WMS :      
+
+```json
+{
+    "map": {        
+        "defaultLayers": ["osm", "myRasters.myWms.wms1"]
+    },
+    "myRasters": {
+        "myWms": {
+            "wms1": {
+                "title": "My WMS",
+                "type": "wms",
+                "attributions": "© <a target='_blank' href='http://www.scne.es'>Sistema Cartográfico Nacional</a>",
+                "url": "http://www.ign.es/wms-inspire/pnoa-ma",
+                "layers": "OI.MosaicElement"
+            }
+        }
+    }
+}
 ```
-
-El fichero de configuración contiene las siguientes propiedades:
+El mapa se define con la proyección **EPSG:3857**, como capas rasters por defecto usará tanto **OpenStreetMap** como **My WMS** y será renderizado en el DOM con id **map**.
 
 ```json
 {
@@ -131,7 +189,6 @@ Observe que tiene toda la libertad a la hora de definir las categorias y nombrad
 
 ## Parámetros para definir una capa WMS
 
-
 | Nombre                  |   Desc.   |
 | ----------------------- | --------- |
 | title                   | Título de la capa      |
@@ -139,9 +196,6 @@ Observe que tiene toda la libertad a la hora de definir las categorias y nombrad
 | attributions            | Atribuciones oficiales de la capa que se mostrarán en el borde inferior          |
 | url                     | URL base del servidor de capas          |
 | layers                  | Nombre/s de la/s capa/s a cargar |      
-
-
-
 
 
 ## Contributors
