@@ -95,10 +95,10 @@ El núcleo principal del fichero de configuración es el objeto **map**, que des
 | domId                   | Identificador del elemento contenedor HTML donde se debe renderizar el mapa |     
 | defaultLayers           | Array de identificadores de capas (vectoriales y rásters) 
 
-En **defaultLayers** se especifican los identicadores de las capas a cargar al inicio de la aplicación- **GeoWE-GIS** ofrece de partida un conjunto de identificadores para las capas raster listos para usar:
+En **defaultLayers** se especifican los identicadores de las capas a cargar al inicio de la aplicación. **GeoWE-GIS** ofrece de partida un conjunto de capas rasters listas para usar:
 
 
-| Nombre                  |   Desc.   |
+| Identificador                  |   Desc.   |
 | ----------------------- | --------- |
 | osm                   | Mapa base de OpenStreetMap      |
 | raster.carto-light                    |Mapa base de Carto       |
@@ -110,7 +110,20 @@ En **defaultLayers** se especifican los identicadores de las capas a cargar al i
 | raster.pnoa-ortho                  | Mapa base de PNOA |
 | raster.pnoa-mosaic                  | Mapa base de PNOA |
 
-Se pueden especificar nuevos identificadores de capas que deberán estar definidos en el fichero como nuevos objetos JSON, indicando el nivel de anidamiento que se desee para su categorización. A continuación se crea un nuevo identificador (myRasters.myWms.wms1) de una capa WMS :      
+Se pueden configurar nuevas capas, que deberán estar definidos en el fichero como nuevos objetos JSON. El identificador o clave de cada objeto será el que posteriormente se debe utilizar en el parámetro **defaultLayers**. Cuando se utilice más de un nivel de anidamiento para categorizar las capas, se deberá usar la notación "." para separar los distintos niveles.
+
+#### Definición de una capa WMS
+Para configurar una nueva capa WMS se deberá definir un objeto que contenga los siguientes parámetros:
+
+| Nombre                  |   Desc.   |
+| ----------------------- | --------- |
+| title                   | Título de la capa      |
+| type                    | Valor fijado a **wms**      |
+| attributions            | Atribuciones oficiales de la capa que se mostrarán en el borde inferior          |
+| url                     | URL base del servidor de capas          |
+| layers                  | Nombre/s de la/s capa/s a cargar |    
+
+A modo de ejemplo, a continuación se crea un nuevo identificador (myRasters.myWms.wms1) de una capa WMS:      
 
 ```json
 {
@@ -130,8 +143,20 @@ Se pueden especificar nuevos identificadores de capas que deberán estar definid
     }
 }
 ```
-El mapa se define con la proyección **EPSG:3857**, como capas rasters por defecto usará tanto **OpenStreetMap** como **My WMS** y será renderizado en el DOM con id **map**.
 
+#### Definición de una capa vectorial
+Para configurar una nueva capa vectorial se deberá definir un objeto que contenga los siguientes parámetros:
+
+| Nombre                  |   Desc.   |
+| ----------------------- | --------- |
+| name                   | Nombre de la capa      |
+| type                    | Valor fijado a **vector**      |
+| source            | Tipo de fuente de datos (**file**, **url**, **wfs**)          |
+| uri                     | URI de la ubicación de los datos vectoriales          |
+| format                  | Formato de los datos (**geojson**) |    
+| srs                  | Sistema de referencia |    
+
+En el siguiente ejemplo se puede observar una configuración alternativa del mapa, en la que se carga por defecto una nueva capa vectorial definida en la categoría **vector**:
 ```json
 {
     "map": {
@@ -152,51 +177,7 @@ El mapa se define con la proyección **EPSG:3857**, como capas rasters por defec
     }
 }
 ```
-En este caso, se configura el mapa con proyección EPSG:25830, con la extensión de Andalucía(España) y, además, se indica que inicialmente el mapa cargue el raster **carto-dark** y una capa vectorial ubicada en una url externa.
-
-Si se quisiera añadir otra capa, por ejemplo, una capa WMS de un servicio externo (PNOA), el fichero de configuración quedaría de la siguiente forma:
-
-```json
-{
-    "map": {
-        "projection": "EPSG:25830",
-        "extent": [97805.10450538254, 3975325.5395915597, 624149.7135073378, 4290248.833085548],
-        "centerPoint": [624149.7135073378, 4290248.833085548],
-        "defaultLayers": ["raster.carto-dark", "vector.Medina-azahara", "raster.pnoa-mosaico"]
-    },    
-    "vector": {
-        "Medina-azahara": {
-            "name": "mi-capa",
-            "type": "vector",
-            "source": "url",
-            "uri": "https://raw.githubusercontent.com/jmmluna/geodata/master/medina_azahara/Mad%C3%ADnat%20al-Zahra.geojson",
-            "format": "geojson",
-            "srs": "EPSG:4326"
-        }
-    },
-    "raster": {
-        "pnoa-mosaico": {
-            "title": "PNOA Mosaico",
-            "type": "wms",
-            "attributions": "© <a target='_blank' href='http://www.scne.es'>Sistema Cartográfico Nacional</a>",
-            "url": "http://www.ign.es/wms-inspire/pnoa-ma",
-            "layers": "OI.MosaicElement"
-        }
-    }
-}
-```
-Observe que tiene toda la libertad a la hora de definir las categorias y nombrado de las capas personalizadas en el JSON de configuración (**raster.pnoa-mosaico**).
-
-## Parámetros para definir una capa WMS
-
-| Nombre                  |   Desc.   |
-| ----------------------- | --------- |
-| title                   | Título de la capa      |
-| type                    | Valor fijado a **wms**      |
-| attributions            | Atribuciones oficiales de la capa que se mostrarán en el borde inferior          |
-| url                     | URL base del servidor de capas          |
-| layers                  | Nombre/s de la/s capa/s a cargar |      
-
+En este caso, se configura el mapa con proyección EPSG:25830, con la extensión de Andalucía(España) y, además, se indica que inicialmente el mapa cargue el raster **carto-dark** y la nueva capa vectorial que está ubicada en una url externa.
 
 ## Contributors
 
