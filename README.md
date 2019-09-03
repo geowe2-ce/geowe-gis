@@ -12,7 +12,8 @@ GeoWE-GIS surge con la premisa de maximizar la flexibilidad en la configuración
 - [Requerimientos](#Requerimientos)
 - [Instalación](#Instalación)
 - [Ejemplo básico de uso](#Ejemplo-básico-de-uso)
-- [Ejemplo personalizado](#Ejemplo-personalizado)
+- [Fichero de configuración](#Fichero-de-configuración)
+   * [Ejemplo de configuración mediante fichero local](#Ejemplo-de-configuración-mediante-fichero-local)
 - [Contributors](#Contributors)
 - [Copyright and license](#copyright-and-license)
 
