@@ -129,13 +129,19 @@ Si se quisiera añadir otra capa, por ejemplo, una capa WMS de un servicio exter
 ```
 Observe que tiene toda la libertad a la hora de definir las categorias y nombrado de las capas personalizadas en el JSON de configuración (**raster.pnoa-mosaico**).
 
-## Parámetros para capas WMS
+## Parámetros para definir una capa WMS
 
 
 | Nombre                  |   Desc.   |
 | ----------------------- | --------- |
-| title                   |           |
-| type                    |           |
+| title                   | Título de la capa      |
+| type                    | Valor fijado a **wms**      |
+| attributions            | Atribuciones oficiales de la capa que se mostrarán en el borde inferior          |
+| url                     | URL base del servidor de capas          |
+| layers                  | Nombre/s de la/s capa/s a cargar |      
+
+
+
 
 
 ## Contributors
