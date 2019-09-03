@@ -9,17 +9,17 @@ GeoWE-GIS surge con la premisa de maximizar la flexibilidad en la configuración
 
 ## Tabla de contenidos
 
--[Requerimientos](#Requerimientos)
--[Instalación](#Instalación)
--[Ejemplo básico de uso](#Ejemplo-básico-de-uso)
--[Fichero de configuración](#Fichero-de-configuración)
-   -[Ejemplo de configuración mediante fichero local](#Ejemplo-de-configuración-mediante-fichero-local)
-   -[Ejemplo de configuración mediante fichero remoto](#Ejemplo-de-configuración-mediante-fichero-remoto)
-      -[Formato del fichero de configuración](#Formato-del-fichero-de-configuración)
-        -[Definición de una capa WMS](#Definición-de-una-capa-WMS)
-        -[Definición de una capa vectorial](#Definición-de-una-capa-vectorial)
--[Contributors](#Contributors)
--[Copyright and license](#copyright-and-license)
+- [Requerimientos](#Requerimientos)
+- [Instalación](#Instalación)
+- [Ejemplo básico de uso](#Ejemplo-básico-de-uso)
+- [Fichero de configuración](#Fichero-de-configuración)
+   - [Ejemplo de configuración mediante fichero local](#Ejemplo-de-configuración-mediante-fichero-local)
+   - [Ejemplo de configuración mediante fichero remoto](#Ejemplo-de-configuración-mediante-fichero-remoto)
+    - [Formato del fichero de configuración](#Formato-del-fichero-de-configuración)
+     - [Definición de una capa WMS](#Definición-de-una-capa-WMS)
+     - [Definición de una capa vectorial](#Definición-de-una-capa-vectorial)
+- [Contributors](#Contributors)
+- [Copyright and license](#copyright-and-license)
 
 ## Requerimientos
 Para comenzar a trabajar con el proyecto necesitará tener Node.js instalado en su entorno. Para **geowe-gis** se han utilizado las siguientes versiones: 
