@@ -16,8 +16,8 @@ GeoWE-GIS surge con la premisa de maximizar la flexibilidad en la configuración
    - [Ejemplo de configuración mediante fichero local](#Ejemplo-de-configuración-mediante-fichero-local)
    - [Ejemplo de configuración mediante fichero remoto](#Ejemplo-de-configuración-mediante-fichero-remoto)
           - [Formato del fichero de configuración](#Formato-del-fichero-de-configuración)
-                 - [Definición de una capa WMS](#Definición-de-una-capa-WMS)
-                 - [Definición de una capa vectorial](#Definición-de-una-capa-vectorial)
+                 1. [Definición de una capa WMS](#Definición-de-una-capa-WMS)
+                 2. [Definición de una capa vectorial](#Definición-de-una-capa-vectorial)
 - [Contributors](#Contributors)
 - [Copyright and license](#copyright-and-license)
 
