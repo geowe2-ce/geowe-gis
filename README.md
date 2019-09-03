@@ -7,7 +7,7 @@ Librería de componentes Open Source en Javascript para el desarrollo de aplicac
 ## ¿Por qué usar geowe-gis?
 GeoWE-GIS surge con la premisa de maximizar la flexibilidad en la configuración de las aplicaciones GIS, permitiendo la personalización en tiempo de ejecución a través de ficheros de configuración en formato JSON. Esto aporta una gran versatilidad y sencillez en la definición de las aplicaciones.
 
-##### Tabla de contenidos
+## Tabla de contenidos
 
 - [Requerimientos](#Requerimientos)
 - [Instalación](#Instalación)
